@@ -1,6 +1,9 @@
 # sennheiser-gsx-1000
 Getting the Sennheiser GSX 1000 DAC to work under Linux
 
+![pavucontrol one](https://raw.githubusercontent.com/evilphish/sennheiser-gsx-1000/master/images/pavucontrol.png)
+![pavucontrol one](https://raw.githubusercontent.com/evilphish/sennheiser-gsx-1000/master/images/pavucontrol2.png)
+
 ## Installation
 Copy sennheiser-gsx-1000.conf to `/usr/share/pulseaudio/alsa-mixer/profile-sets/`
 

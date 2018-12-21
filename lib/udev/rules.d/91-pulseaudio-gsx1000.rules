@@ -1,0 +1,8 @@
+SUBSYSTEM!="sound", GOTO="pulseaudio_end"
+ACTION!="change", GOTO="pulseaudio_end"
+KERNEL!="card*", GOTO="pulseaudio_end"
+
+ATTRS{idVendor}=="1395", ATTRS{idProduct}=="005e", ENV{PULSE_PROFILE_SET}="sennheiser-gsx-1000.conf", ATTR{id}="GSX1000"
+
+
+LABEL="pulseaudio_end"

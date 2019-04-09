@@ -9,6 +9,8 @@ Copy sennheiser-gsx-1000.conf to `/usr/share/pulseaudio/alsa-mixer/profile-sets/
 
 Copy 91-pulseaudio-gsx1000.rules to `/lib/udev/rules.d/`
 
+Copy 40-sennheiser-gsx-1000.conf to `/etc/X11/xorg.conf.d/40-sennheiser-gsx-1000.conf` to disable it as an input device. The reason you would want to do this is because the big wheel always maps to volume down, so turning it will always lower your volume to zero. This is a temporary fix which just disables it as an input device so that turning the wheel will not modify the internal volume specifier, without affecting your normal media keys.
+
 (Or wherever your correspondig folders are located. This should be good for Debian/Mint/Ubuntu.
 
 Reload and trigger udev (as root)

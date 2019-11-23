@@ -31,3 +31,6 @@ You will get two output devices, **main output** and **chat output**. The **main
 
 ## What does not work?
 Controlling the software volume with the big wheel results in the volume being lowered to zero as each turning direction counts as the multimedia key Volume-Down. I disabled this by deleting the multimedia keys for volume from my cinnamon keyboard settings (Who wants to use multimedia keys if you have the GSX 1000 for that). Nonetheless, it would be great if we could teach Linux that turning the knob clockwise means Volume-Up instead of down. If anyone has any insight into this, please drop me a line or open an issue!
+
+## Arch Linux users
+Just reboot after install

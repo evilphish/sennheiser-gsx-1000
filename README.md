@@ -1,17 +1,17 @@
-# sennheiser-gsx-1000
-Getting the Sennheiser GSX 1000 DAC to work under Linux
+# sennheiser-gsx-1000 / 1200 Pro
+Getting the Sennheiser GSX 1000 / 1200 Pro DAC to work under Linux
 
 ![pavucontrol one](https://raw.githubusercontent.com/evilphish/sennheiser-gsx-1000/master/images/pavucontrol.png)
 ![pavucontrol two](https://raw.githubusercontent.com/evilphish/sennheiser-gsx-1000/master/images/pavucontrol2.png)
 
 ## Installation
-Copy sennheiser-gsx-1000.conf to `/usr/share/pulseaudio/alsa-mixer/profile-sets/`
+Copy sennheiser-gsx-1000.conf or sennheiser-gsx-1200.conf to `/usr/share/pulseaudio/alsa-mixer/profile-sets/`
 
-Copy 91-pulseaudio-gsx1000.rules to `/lib/udev/rules.d/`
+Copy 91-pulseaudio-gsx1000.rules or 91-pulseaudio-gsx-1200.rules to `/lib/udev/rules.d/`
 
-Copy 40-sennheiser-gsx-1000.conf to `/etc/X11/xorg.conf.d/40-sennheiser-gsx-1000.conf` to disable it as an input device. The reason you would want to do this is because the big wheel always maps to volume down, so turning it will always lower your volume to zero. This is a temporary fix which just disables it as an input device so that turning the wheel will not modify the internal volume specifier, without affecting your normal media keys.
+Copy 40-sennheiser-gsx-1000.conf or 40-sennheiser-gsx-1200.conf to `/etc/X11/xorg.conf.d/40-sennheiser-gsx-1000.conf` to disable it as an input device. The reason you would want to do this is because the big wheel always maps to volume down, so turning it will always lower your volume to zero. This is a temporary fix which just disables it as an input device so that turning the wheel will not modify the internal volume specifier, without affecting your normal media keys.
 
-(Or wherever your correspondig folders are located. This should be good for Debian/Mint/Ubuntu.
+(Or wherever your correspondig folders are located. This should be good for Debian/Mint/Ubuntu/Arch Linux.
 
 Reload and trigger udev (as root)
 ```

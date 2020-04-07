@@ -23,6 +23,37 @@ Kill pulseaudio and let the system restart it (as user)
 ```
 $> pulseaudio -k
 ```
+
+Next you want to list your available sinks
+```
+$> pacmd list-sinks | grep -e 'index:' -e device.string -e 'name: '
+```
+and you should get something like this
+```
+    index: 0
+	name: <alsa_output.usb-Sennheiser_GSX_1000_Main_Audio_5698800398027817-00.analog-output-surround71>
+		device.string = "hw:CARD=GSX1000,DEV=1"
+*   index: 1
+	name: <alsa_output.usb-Sennheiser_GSX_1000_Main_Audio_5698800398027817-00.analog-output-chat>
+		device.string = "hw:CARD=GSX1000,DEV=0"
+    index: 2
+	name: <alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2>
+		device.string = "hdmi:0,2"
+```
+Notice, how the asterisk marking the default output sink is in front of the analog-output-chat? We want the default sink to be the 7.1 audio so copy the name from the surround71 output (without the <>), edit `/etc/pulse/default.pa` and add the following line at the end
+```
+set-default-sink <your sink name>
+```
+on my system with the example above this would be
+```
+set-default-sink alsa_output.usb-Sennheiser_GSX_1000_Main_Audio_5698800398027817-00.analog-output-surround71
+```
+
+Kill pulseaudio again and let the system restart it (as user)
+```
+$> pulseaudio -k
+```
+
 done.
 
 ## Usage

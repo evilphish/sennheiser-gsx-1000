@@ -5,6 +5,28 @@ Getting the Sennheiser GSX 1000 / 1200 Pro DAC to work under Linux
 ![pavucontrol two](https://raw.githubusercontent.com/evilphish/sennheiser-gsx-1000/master/images/pavucontrol2.png)
 
 ## Installation
+
+Just run
+
+```
+# gsh 1000
+./install.sh
+
+#gsx1200
+./install.sh 1200
+```
+
+## Deinstallation
+
+```
+# gsh 1000
+./uninstall.sh
+
+#gsx1200
+./uninstall.sh 1200
+```
+
+## Manual Installation
 Copy sennheiser-gsx-1000.conf or sennheiser-gsx-1200.conf to `/usr/share/pulseaudio/alsa-mixer/profile-sets/`
 
 Copy 91-pulseaudio-gsx1000.rules or 91-pulseaudio-gsx-1200.rules to `/lib/udev/rules.d/`

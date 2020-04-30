@@ -3,16 +3,11 @@
 set -e
 type=${1:-1000}
 
-echo "Installing GSX-$type"
+echo "Uninstalling GSX-$type"
 
-echo "Installing X11 config"
-sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /usr/share/X11/xorg.conf.d/
-
-echo "Installing udev rule"
-sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /lib/udev/rules.d/
-
-echo "Installing pulsaudio profiles"
-sudo cp -r usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type.conf /usr/share/pulseaudio/alsa-mixer/profile-sets/
+sudo rm -f /usr/share/X11/xorg.conf.d/40-sensheiser-gsx-$type.conf
+sudo rm -f /lib/udev/rules.d/91-pulseaudio-gsx$type.rules 
+sudo rm -f /usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type.conf
 
 echo "Reloading udev rules"
 sudo udevadm control -R

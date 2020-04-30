@@ -6,7 +6,13 @@ type=${1:-1000}
 echo "Installing GSX-$type"
 
 echo "Installing X11 config"
-sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /usr/share/X11/xorg.conf.d/
+if [ -f /etc/debian_version ]; then
+  echo "- Debian/Ubuntu base"
+  sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /usr/share/X11/xorg.conf.d/
+else
+  echo "- Assuming arch base"
+  sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /etc/X11/xorg.conf.d/
+fi
 
 echo "Installing udev rule"
 sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /lib/udev/rules.d/

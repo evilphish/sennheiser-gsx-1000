@@ -18,7 +18,7 @@ echo "Installing udev rule"
 sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /lib/udev/rules.d/
 
 echo "Installing pulsaudio profiles"
-read -p "Should we install the channelswap-fix, see https://github.com/evilphish/sennheiser-gsx-1000/issues/9 (y for yes)? " -n 1 -r
+read -p "Should we install the channelswap-fix, see https://github.com/evilphish/sennheiser-gsx-1000/issues/9 (y for yes, n [default])? " -n 1 -r
 echo 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -34,11 +34,14 @@ echo "Reloading udev rules"
 sudo udevadm control -R
 sudo udevadm trigger
 
-read -p "Should pulseaudio be restarted (y for yes)? " -n 1 -r
+read -p "SKIP pulseaudio be restart () (y for yes, n [default])? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  echo "Restart pulse audio"
+  echo "Skipped pulseaudio restart"
+else
+  echo "Restarting pulse audio"
+  # ignore errors if we restart too often / to fast .. we just ensure to nuke it
   pulseaudio -k > /dev/null 2>&1 || true
   pulseaudio -k > /dev/null 2>&1 || true
   pulseaudio -k > /dev/null 2>&1 || true
@@ -46,7 +49,5 @@ then
   echo "Ensure pulseaudio is started"
   sleep 2
   pulseaudio -D
-else
-  echo "Skipped pulseaudio restart"
 fi
 

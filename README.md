@@ -6,23 +6,29 @@ Getting the Sennheiser GSX 1000 / 1200 Pro DAC to work under Linux
 
 ## Installation
 
-Just run
+Get the repo
+```
+git clone https://github.com/evilphish/sennheiser-gsx-1000
+cd sennheiser-gsx-1000
+```
+
+Then just run
 
 ```
-# gsh 1000
+# gsx-1000
 ./install.sh
 
-#gsx1200
+# gsx-1200
 ./install.sh 1200
 ```
 
 ## Deinstallation
 
 ```
-# gsh 1000
+# gsx-1000
 ./uninstall.sh
 
-#gsx1200
+# gsx-1200
 ./uninstall.sh 1200
 ```
 

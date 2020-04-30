@@ -18,7 +18,17 @@ echo "Installing udev rule"
 sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /lib/udev/rules.d/
 
 echo "Installing pulsaudio profiles"
-sudo cp -r usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type.conf /usr/share/pulseaudio/alsa-mixer/profile-sets/
+read -p "Should we install the channelswap-fix, see https://github.com/evilphish/sennheiser-gsx-1000/issues/9 (y for yes)? " -n 1 -r
+echo 
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  sudo cp -r usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type-channelswap.conf /usr/share/pulseaudio/alsa-mixer/profile-sets/
+  echo "- installed channel-swap mix"
+else
+  sudo cp -r usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type.conf /usr/share/pulseaudio/alsa-mixer/profile-sets/
+  echo "- installed normal channel mix"
+fi
+
 
 echo "Reloading udev rules"
 sudo udevadm control -R

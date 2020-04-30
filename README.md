@@ -22,6 +22,8 @@ Then just run
 ./install.sh 1200
 ```
 
+You might need to consider to install the channel-swap variant if your center seems "lefty" or your subfoover feels "righty" see [this issue](https://github.com/evilphish/sennheiser-gsx-1000/issues/9)
+
 ## Deinstallation
 
 ```

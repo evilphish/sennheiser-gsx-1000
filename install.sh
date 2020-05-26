@@ -41,6 +41,13 @@ then
   echo "Skipped pulseaudio restart"
 else
   echo "Restarting pulse audio"
-  systemctl --user restart pulseaudio.service
+  # ignore errors if we restart too often / to fast .. we just ensure to nuke it
+  pulseaudio -k > /dev/null 2>&1 || true
+  pulseaudio -k > /dev/null 2>&1 || true
+  pulseaudio -k > /dev/null 2>&1 || true
+
+  echo "Ensure pulseaudio is started"
+  sleep 2
+  pulseaudio -D
 fi
 

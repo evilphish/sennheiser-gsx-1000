@@ -6,16 +6,16 @@ type=${1:-1000}
 echo "Installing GSX-$type"
 
 echo "Installing X11 config"
-if [ -f /etc/debian_version ]; then
-  echo "- Debian/Ubuntu base"
-  sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /usr/share/X11/xorg.conf.d/
-else
-  echo "- Assuming arch base"
-  sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /etc/X11/xorg.conf.d/
+if [ ! -d /etc/X11/xorg.conf.d ]; then
+  sudo mkdir -p /etc/X11/xorg.conf.d;
 fi
+  sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /etc/X11/xorg.conf.d/
 
 echo "Installing udev rule"
 sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /lib/udev/rules.d/
+
+echo "Installing udev hwdb"
+sudo cp etc/udev/hwdb.d/sennheiser-gsx.hwdb /etc/udev/hwdb.d/
 
 echo "Installing pulsaudio profiles"
 read -p "Should we install the channelswap-fix, see https://github.com/evilphish/sennheiser-gsx-1000/issues/9 (y for yes, n [default])? " -n 1 -r
@@ -29,8 +29,8 @@ else
   echo "- installed normal channel mix"
 fi
 
-
 echo "Reloading udev rules"
+sudo systemd-hwdb update
 sudo udevadm control -R
 sudo udevadm trigger
 

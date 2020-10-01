@@ -12,7 +12,16 @@ fi
   sudo cp usr/share/X11/xorg.conf.d/40-sennheiser-gsx-$type.conf /etc/X11/xorg.conf.d/
 
 echo "Installing udev rule"
-sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /lib/udev/rules.d/
+if [ -d /lib/udev/rules.d/ ]; then
+  echo "Udev located in /lib"
+  sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /lib/udev/rules.d/
+elif [ -d /etc/udev/rules.d/ ]; then
+  echo "Udev located in /etc"
+  sudo cp lib/udev/rules.d/91-pulseaudio-gsx$type.rules /etc/udev/rules.d/
+else
+  echo "Udev rules route not found, hence cancelling installation"
+  echo "Expected locations: /etc/udev/rules.d/ OR /lib/udev/rules.d/"
+fi
 
 echo "Installing udev hwdb"
 sudo cp etc/udev/hwdb.d/sennheiser-gsx.hwdb /etc/udev/hwdb.d/

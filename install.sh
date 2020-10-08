@@ -31,11 +31,15 @@ read -p "Should we install the channelswap-fix, see https://github.com/evilphish
 echo 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  sudo cp -r usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type-channelswap.conf /usr/share/pulseaudio/alsa-mixer/profile-sets/
+  sudo cp -r usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type-channelswap.conf /usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type.conf 
   echo "- installed channel-swap mix"
 else
   sudo cp -r usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type.conf /usr/share/pulseaudio/alsa-mixer/profile-sets/
   echo "- installed normal channel mix"
+fi
+
+if [ -d /usr/share/alsa-card-profile/mixer/profile-sets ]; then
+  sudo ln -s /usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx.conf /usr/share/alsa-card-profile/mixer/profile-sets/
 fi
 
 echo "Reloading udev rules"

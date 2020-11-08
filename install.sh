@@ -39,7 +39,7 @@ else
 fi
 
 if [ -d /usr/share/alsa-card-profile/mixer/profile-sets ]; then
-  sudo ln -s /usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx.conf /usr/share/alsa-card-profile/mixer/profile-sets/
+  sudo ln -s /usr/share/pulseaudio/alsa-mixer/profile-sets/sennheiser-gsx-$type.conf /usr/share/alsa-card-profile/mixer/profile-sets/
 fi
 
 echo "Reloading udev rules"

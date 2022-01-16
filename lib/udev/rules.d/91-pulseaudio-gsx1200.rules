@@ -2,7 +2,7 @@ SUBSYSTEM!="sound", GOTO="pulseaudio_end"
 ACTION!="change", GOTO="pulseaudio_end"
 KERNEL!="card*", GOTO="pulseaudio_end"
 
-ATTRS{idVendor}=="1395", ATTRS{idProduct}=="005f", ENV{PULSE_PROFILE_SET}="sennheiser-gsx-1200.conf", ATTR{id}="GSX1200"
+ATTRS{idVendor}=="1395", ATTRS{idProduct}=="00a1|005f", ENV{PULSE_PROFILE_SET}="sennheiser-gsx-1200.conf", ATTR{id}="GSX1200"
 
 
 LABEL="pulseaudio_end"
